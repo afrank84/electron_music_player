@@ -1,0 +1,50 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+
+# Optional npm cache directory
+.npm
+
+# Yarn dependencies
+yarn.lock
+.pnp.*
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Optional Yarn cache directory
+.yarn/cache
+
+# Electron build output
+/dist/
+/out/
+
+# VSCode settings
+.vscode/
+
+# macOS specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
+
+# Log files
+logs/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build artifacts
+build/
+*.tgz
+
+# Coverage directory used by testing tools
+coverage/
+
+# Caches
+.cache/
