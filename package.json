@@ -1,0 +1,22 @@
+{
+  "name": "electron_music_player",
+  "version": "1.0.0",
+  "description": "Updates and Reads meta data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afrank84/electron_music_player.git"
+  },
+  "keywords": [
+    "music"
+  ],
+  "author": "Anthony Frank",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/afrank84/electron_music_player/issues"
+  },
+  "homepage": "https://github.com/afrank84/electron_music_player#readme"
+}
