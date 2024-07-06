@@ -38,7 +38,14 @@ document.getElementById('select-folder-button').addEventListener('click', async 
   files.forEach(file => {
       const li = document.createElement('li');
       li.textContent = file;
+      li.classList.add('list-group-item');
       li.addEventListener('click', () => {
+          // Remove 'active' class from all list items
+          document.querySelectorAll('#file-list li').forEach(item => {
+              item.classList.remove('active');
+          });
+          // Add 'active' class to the clicked item
+          li.classList.add('active');
           audioPlayer.src = file;
           audioPlayer.play();
       });
