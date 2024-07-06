@@ -3,6 +3,7 @@ document.getElementById('fileInput').addEventListener('change', async function (
   const audioPlayer = document.getElementById('audioPlayer');
   const metadataDiv = document.getElementById('metadata');
   const copyButton = document.getElementById('copyButton');
+  const coverArt = document.getElementById('coverArt');
 
   if (files.length > 0) {
       const fileURL = URL.createObjectURL(files[0]);
@@ -15,6 +16,15 @@ document.getElementById('fileInput').addEventListener('change', async function (
 
       // Display metadata
       metadataDiv.innerHTML = `<pre id="metadataText">${JSON.stringify(metadata, null, 2)}</pre>`;
+
+      // Display cover art if available, otherwise show default
+      if (metadata.common.picture && metadata.common.picture.length > 0) {
+          const picture = metadata.common.picture[0];
+          const base64String = Buffer.from(picture.data).toString('base64');
+          coverArt.src = `data:${picture.format};base64,${base64String}`;
+      } else {
+          coverArt.src = 'art.jpg';
+      }
 
       // Enable the copy button and add event listener
       copyButton.disabled = false;
@@ -35,6 +45,7 @@ document.getElementById('select-folder-button').addEventListener('click', async 
   const audioPlayer = document.getElementById('audioPlayer');
   const metadataDiv = document.getElementById('metadata');
   const copyButton = document.getElementById('copyButton');
+  const coverArt = document.getElementById('coverArt');
   fileList.innerHTML = '';
 
   files.forEach(file => {
@@ -59,6 +70,15 @@ document.getElementById('select-folder-button').addEventListener('click', async 
           // Display metadata
           metadataDiv.innerHTML = `<pre id="metadataText">${JSON.stringify(metadata, null, 2)}</pre>`;
 
+          // Display cover art if available, otherwise show default
+          if (metadata.common.picture && metadata.common.picture.length > 0) {
+              const picture = metadata.common.picture[0];
+              const base64String = Buffer.from(picture.data).toString('base64');
+              coverArt.src = `data:${picture.format};base64,${base64String}`;
+          } else {
+              coverArt.src = 'art.jpg';
+          }
+
           // Enable the copy button and add event listener
           copyButton.disabled = false;
           copyButton.addEventListener('click', () => {
@@ -72,4 +92,13 @@ document.getElementById('select-folder-button').addEventListener('click', async 
       });
       fileList.appendChild(li);
   });
+});
+
+// Update cover art on click
+document.getElementById('coverArt').addEventListener('click', async () => {
+  const { filePath } = await window.electron.showOpenDialog();
+  if (filePath) {
+      document.getElementById('coverArt').src = filePath;
+      // Here you can add code to update the metadata with the new cover art
+  }
 });

@@ -60,3 +60,15 @@ ipcMain.handle('select-folder', async (event) => {
         return files;
     }
 });
+
+ipcMain.handle('showOpenDialog', async () => {
+  const result = await dialog.showOpenDialog(mainWindow, {
+      properties: ['openFile'],
+      filters: [{ name: 'Images', extensions: ['jpg', 'png', 'gif'] }]
+  });
+  if (result.canceled) {
+      return { filePath: null };
+  } else {
+      return { filePath: result.filePaths[0] };
+  }
+});
